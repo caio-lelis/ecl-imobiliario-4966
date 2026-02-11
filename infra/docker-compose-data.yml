@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  postgres-data:
+    image: postgres:15
+    container_name: postgres-data
+    environment:
+      POSTGRES_USER: datalake
+      POSTGRES_PASSWORD: datalake
+      POSTGRES_DB: datalake
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_volume:
+#  docker exec -it postgres-data psql -U datalake -d datalake
+
+# \l -> visualizar as bases de dados
+# \c meu_banco -> conectar a um banco de dados específico
+# \q -> sair do psql
+# \d nome_da_tabela -> visualizar a estrutura de uma tabela específica
+# CREATE TABLE nome_da_tabela (coluna1 tipo1, coluna2 tipo2, ...); -> criar uma nova tabela
+# \dt -> listar todas as tabelas no banco de dados atual
