@@ -76,6 +76,20 @@ services:
       - ./dags:/opt/airflow/dags
     command: scheduler
 
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    ports:
+      - "9018:9018" # API
+      - "9019:9019" # Console
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9019"
+
 volumes:
   postgres_data:
   mlflow_data:
+  minio_data:
